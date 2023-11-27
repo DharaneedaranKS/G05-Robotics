@@ -1,6 +1,0 @@
-<launch>
-
-  <node name="mycobot_grasping_trial" pkg="mycobot_grasping" type="grasp_demo.py" respawn="false" output="screen">
-  </node>
-
-</launch>
