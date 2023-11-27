@@ -1,0 +1,26 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+  <param name="robot_description" command="$(find xacro)/xacro $(find g05)/urdf/g05.xacro"/>
+  <param name = "my_robot" value="g05"/>
+  <arg name ="init_pose" value="-x 0 -y 0 -z 0 -R 0 -P 0 -Y 0"/>
+  <rosparam file="$(find g05)/config/controllers.yaml" command="load"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node>
+  <node pkg="tf" type="static_transform_publisher" name="map_to_base" args="1 0 0 0 0 0 1 /map /dummy 10" />
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/g05" args="joint_state_controller Revolute_1_position_controller Revolute_2_position_controller Revolute_3_position_controller Revolute_4_position_controller Revolute_5_position_controller Revolute_6_position_controller"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <remap from="/joint_states" to="/g05/joint_states"/>
+  </node>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose) -param robot_description -urdf -model g05 -J Revolute_1 0.0 -J Revolute_2 0.0 -J Revolute_3 0.0 -J Revolute_4 0.0 -J Revolute_5 0.0 -J Revolute_6 0.0 "/>
+
+</launch>
