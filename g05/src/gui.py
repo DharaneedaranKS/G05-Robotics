@@ -38,12 +38,12 @@ class MasterController:
         self.root.geometry("+50+50")
 
         # Create individual sliders for each joint
-        controller1 = SliderController(self.root, "Controller 1", "/g05/Revolute_1_position_controller/command", -180, 180, "blue4")
-        controller2 = SliderController(self.root, "Controller 2", "/g05/Revolute_2_position_controller/command", -180, 180, "blue4")
-        controller3 = SliderController(self.root, "Controller 3", "/g05/Revolute_3_position_controller/command", -180, 180, "blue4")
-        controller4 = SliderController(self.root, "Controller 4", "/g05/Revolute_4_position_controller/command", -180, 180, "blue4")
-        controller5 = SliderController(self.root, "Controller 5", "/g05/Revolute_5_position_controller/command", -180, 180, "blue4")
-        controller6 = SliderController(self.root, "Controller 6", "/g05/Revolute_6_position_controller/command", -180, 180, "blue4")
+        _ = SliderController(self.root, "Controller 1", "/g05/Revolute_1_position_controller/command", -180, 180, "blue4")
+        _ = SliderController(self.root, "Controller 2", "/g05/Revolute_2_position_controller/command", -180, 180, "blue4")
+        _ = SliderController(self.root, "Controller 3", "/g05/Revolute_3_position_controller/command", -180, 180, "blue4")
+        _ = SliderController(self.root, "Controller 4", "/g05/Revolute_4_position_controller/command", -180, 180, "blue4")
+        _ = SliderController(self.root, "Controller 5", "/g05/Revolute_5_position_controller/command", -180, 180, "blue4")
+        _ = SliderController(self.root, "Controller 6", "/g05/Revolute_6_position_controller/command", -180, 180, "blue4")
 
     def run(self):
         self.root.mainloop()
